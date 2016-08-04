@@ -2,7 +2,7 @@
 
 A few utility scripts I wrote that
 
-1. start a vanilla Minecraft server on startup,
+1. start a [vanilla Minecraft server](https://minecraft.net/en/download/server) on system boot,
 2. keep an up-to-date backup of the world,
 3. as well as daily snapshots for the history books.
 
@@ -17,9 +17,13 @@ brew install screen     # macOS
 apt-get install screen  # Debian, Ubuntu etc.
 ```
 
-Now, copy the included file `.mcurc` to your home directory and modify it according to the instructions in the file.
+Now, modify the included file `.mcurc` according to the instructions in the file and copy it to your home directory:
 
-Finally, set up your crontab: run `crontab -e` and paste the following lines:
+```bash
+cp .mcurc ~
+```
+
+Finally, set up your crontab: Run `crontab -e` and paste the following lines at the end of the buffer:
 
 ```
 TODO
