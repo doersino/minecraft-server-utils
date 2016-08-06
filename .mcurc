@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# directory containing the scripts you've downloaded from https://github.com/doersino/minecraft-server-utils/
+MCU_SCRIPTDIR="/path/to/directory/containing/minecraft-server-utils"
+
+# path to where the files you want to backup are stored
+MCU_SOURCEDIR="/path/to/server/or/world/folder"
+
+# change this if your minecraft_server*.jar is not located "directly" in the
+# direcory set in the previous variable
+MCU_SERVERPATH="$MCU_SOURCEDIR/minecraft_server*.jar"
+
+# directory that will contain the backups
+# DON'T STORE OTHER FILES IN THIS DIRECTORY -- THEY MIGHT GET PURGED OTHERWISE!
+MCU_TARGETDIR="/path/to/wherever/you/want/to/store/backups"
+
+# change to empty string if you don't want logs
+MCU_LOGDIR="/tmp"
+
+# that's it, don't change anything below the following line
+
+# ------------------------------------------------------------------------------
+
+MCU_SOURCEDIR_BASENAME="${MCU_SOURCEDIR##*/}"
+
+alias start-server="java -Xmx1024M -Xms1024M -jar $MCU_SERVERPATH nogui"
+
+if [ -z "$MCU_LOGDIR" ]; then  # no logging
+    alias mcu-incremental-backup="$MCUSCRIPTDIR/incremental-backup.sh > /dev/null 2>&1"
+    alias mcu-purge-backups="$MCUSCRIPTDIR/purge-backups.sh > /dev/null 2>&1"
+    alias mcu-daily-backup="$MCUSCRIPTDIR/daily-backup.sh > /dev/null 2>&1"
+    alias mcu-start-on-boot="$MCUSCRIPTDIR/start-on-boot.sh > /dev/null 2>&1"
+else
+    alias mcu-incremental-backup="$MCUSCRIPTDIR/incremental-backup.sh > $MCU_LOGDIR/mcu-hourly-backup.log 2>&1"
+    alias mcu-purge-backups="$MCUSCRIPTDIR/purge-backups.sh > $MCU_LOGDIR/mcu-purge-backups.log 2>&1"
+    alias mcu-daily-backup="$MCUSCRIPTDIR/daily-backup.sh > $MCU_LOGDIR/mcu-daily-backup.log 2>&1"
+    alias mcu-start-on-boot="$MCUSCRIPTDIR/start-on-boot.sh > $MCU_LOGDIR/start-on-boot.log 2>&1"
+fi
