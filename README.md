@@ -11,25 +11,19 @@ A few utility scripts I wrote that
 
 ## Setup
 
-TODO minecraft server files incl world must all be in one folder
-
-1. Make sure that `bash` and `cron` are installed on your system (if you're not sure, you likely have them). Then install `screen`:
+1. Make sure that `bash`, `cron` and `rsync` (among others) are installed on your system (if you're not sure, you likely have them). Then install `screen`:
 
     ```bash
-    brew install screen     # macOS
-    apt-get install screen  # Debian, Ubuntu etc.
+    apt-get install screen
     ```
 
 2. Now, **modify** the included file `.mcurc` according to the **instructions in the file** and copy it to your home directory:
 
     ```bash
+    # first modify .mcurc, then:
     cp .mcurc ~
     ```
 
-3. Finally, set up your crontab: Run `crontab -e` and paste the following lines (also available in `crontab.txt`) at the end of the buffer:
+3. Finally, set up your crontab: Run `crontab -e` and paste the contents of `crontab.txt` at the end of the buffer.
 
-    ```
-    TODO
-    ```
-
-After completing these steps, TODO what will happen?
+After completing these steps, reboot. Once your system is up again, the Minecraft server should be up and running (you can manage it by attaching to the screen session "mcs": `screen -r mcs`) and backups should be performed regularly (check this by looking at the target directory you're configured in step 2, or if it's still empty after a while, inspect the log files).
