@@ -3,7 +3,7 @@
 A few utility scripts I wrote that
 
 1. start a [vanilla Minecraft server](https://minecraft.net/en/download/server) on system boot,
-2. keep an up-to-date backup of the world and server files,
+2. keep an up-to-date incremental backup of the world and server files,
 3. as well as daily snapshots for the history books,
 4. and optionally purge old snapshots whenever disk space runs low.
 
@@ -20,7 +20,7 @@ TODO minecraft server files incl world must all be in one folder
     apt-get install screen  # Debian, Ubuntu etc.
     ```
 
-2. Now, modify the included file `.mcurc` according to the instructions in the file and copy it to your home directory:
+2. Now, **modify** the included file `.mcurc` according to the **instructions in the file** and copy it to your home directory:
 
     ```bash
     cp .mcurc ~
