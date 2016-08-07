@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# directory containing the scripts you've downloaded from https://github.com/doersino/minecraft-server-utils/
+MCSU_SCRIPTDIR="/path/to/directory/containing/minecraft-server-utils"
+
+# path to where the files you want to backup are stored
+MCSU_SOURCEDIR="/path/to/server/or/world/folder"
+
+# change this if your minecraft_server*.jar is not located "directly" in the
+# direcory set in the previous variable
+MCSU_SERVERPATH="$MCSU_SOURCEDIR/minecraft_server*.jar"
+
+# directory that will contain the backups
+# DON'T STORE OTHER FILES IN THIS DIRECTORY -- THEY MIGHT GET PURGED OTHERWISE!
+MCSU_TARGETDIR="/path/to/wherever/you/want/to/store/backups"
+
+# change to empty string if you don't want logs
+MCSU_LOGDIR="/tmp"
+
+# that's it, don't change anything below the following line
+
+# ------------------------------------------------------------------------------
+
+MCSU_SOURCEDIR_BASENAME="${MCSU_SOURCEDIR##*/}"
+
+alias mcsu-start-server="java -Xmx1024M -Xms1024M -jar $MCSU_SERVERPATH nogui"
+
+if [ -z "$MCSU_LOGDIR" ]; then  # no logging
+    alias mcsu-incremental-backup="$MCSUSCRIPTDIR/incremental-backup.sh > /dev/null 2>&1"
+    alias mcsu-purge-backups="$MCSUSCRIPTDIR/purge-backups.sh > /dev/null 2>&1"
+    alias mcsu-daily-backup="$MCSUSCRIPTDIR/daily-backup.sh > /dev/null 2>&1"
+    alias mcsu-start-on-boot="$MCSUSCRIPTDIR/start-on-boot.sh > /dev/null 2>&1"
+else
+    alias mcsu-incremental-backup="$MCSUSCRIPTDIR/incremental-backup.sh > $MCSU_LOGDIR/mcsu-hourly-backup.log 2>&1"
+    alias mcsu-purge-backups="$MCSUSCRIPTDIR/purge-backups.sh > $MCSU_LOGDIR/mcsu-purge-backups.log 2>&1"
+    alias mcsu-daily-backup="$MCSUSCRIPTDIR/daily-backup.sh > $MCSU_LOGDIR/mcsu-daily-backup.log 2>&1"
+    alias mcsu-start-on-boot="$MCSUSCRIPTDIR/start-on-boot.sh > $MCSU_LOGDIR/mcsu-start-on-boot.log 2>&1"
+fi

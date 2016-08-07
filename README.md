@@ -17,11 +17,11 @@ A few utility scripts I wrote that
     apt-get install screen
     ```
 
-2. Now, **modify** the included file `.mcurc` according to the **instructions in the file** and copy it to your home directory:
+2. Now, **modify** the included file `.mcsurc` according to the **instructions in the file** and copy it to your home directory:
 
     ```bash
-    # first modify .mcurc, then:
-    cp .mcurc ~
+    # first modify .mcsurc, then:
+    cp .mcsurc ~
     ```
 
 3. Finally, set up your crontab: Run `crontab -e` and paste the contents of `crontab.txt` at the end of the buffer.

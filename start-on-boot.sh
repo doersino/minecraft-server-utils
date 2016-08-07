@@ -11,4 +11,4 @@ function exec_in_screen {
 sleep 10
 
 # start server in screen session mcs
-exec_in_screen "mcs" start-server
+exec_in_screen "mcs" mcsu-start-server
