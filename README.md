@@ -1,6 +1,6 @@
 # minecraft-server-utils
 
-A few utility scripts I wrote that
+A few utility bash scripts I wrote that
 
 1. start a [vanilla Minecraft server](https://minecraft.net/en/download/server) on system boot,
 2. keep an up-to-date incremental backup of the world and server files,
