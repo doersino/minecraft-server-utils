@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # directory containing the scripts you've downloaded from https://github.com/doersino/minecraft-server-utils/
-export MCSU_SCRIPTDIR="/path/to/directory/containing/minecraft-server-utils"
+export MCSU_SCRIPTDIR="$HOME/path/to/directory/containing/minecraft-server-utils"
 
 # path to where the files you want to backup are stored
-export MCSU_SOURCEDIR="/path/to/server/or/world/folder"
+export MCSU_SOURCEDIR="$HOME/path/to/server/or/world/folder"
 
 # change this if your minecraft_server.jar is not located "directly" in the
 # direcory set in the previous variable or has a different name
 export MCSU_SERVERPATH="$MCSU_SOURCEDIR/minecraft_server.jar"
+
+# change this command only if you need java to allocate more ram
+export MCSU_SERVERCMD="cd ${MCSU_SERVERPATH%/*}; java -Xmx1024M -Xms1024M -jar $MCSU_SERVERPATH nogui"
 
 # directory that will contain the backups (e.g. on a thumb drive or sd card)
 # DON'T STORE OTHER FILES IN THIS DIRECTORY -- THEY MIGHT GET PURGED OTHERWISE!
@@ -23,17 +26,14 @@ export MCSU_LOGDIR="/tmp"
 
 export MCSU_SOURCEDIR_BASENAME="${MCSU_SOURCEDIR##*/}"
 
-export MCSU_START_SERVER_CMD="cd ${MCSU_SERVERPATH%/*}; java -Xmx1024M -Xms1024M -jar $MCSU_SERVERPATH nogui"
-alias mcsu-start-server="$MCSU_START_SERVER_CMD"
-
 if [ -z "$MCSU_LOGDIR" ]; then  # no logging
-    alias mcsu-incremental-backup="$MCSU_SCRIPTDIR/incremental-backup.sh > /dev/null 2>&1"
-    alias mcsu-purge-snapshots="$MCSU_SCRIPTDIR/purge-snapshots.sh > /dev/null 2>&1"
-    alias mcsu-daily-snapshot="$MCSU_SCRIPTDIR/daily-snapshot.sh > /dev/null 2>&1"
-    alias mcsu-start-on-boot="$MCSU_SCRIPTDIR/start-on-boot.sh > /dev/null 2>&1"
+    export MCSU_INCREMENTAL_BACKUP="$MCSU_SCRIPTDIR/incremental-backup.sh > /dev/null 2>&1"
+    export MCSU_PURGE_SNAPSHOTS="$MCSU_SCRIPTDIR/purge-snapshots.sh > /dev/null 2>&1"
+    export MCSU_DAILY_SNAPSHOT="$MCSU_SCRIPTDIR/daily-snapshot.sh > /dev/null 2>&1"
+    export MCSU_START_ON_BOOT="$MCSU_SCRIPTDIR/start-on-boot.sh > /dev/null 2>&1"
 else
-    alias mcsu-incremental-backup="$MCSU_SCRIPTDIR/incremental-backup.sh > $MCSU_LOGDIR/mcsu-incremental-backup.log 2>&1"
-    alias mcsu-purge-snapshots="$MCSU_SCRIPTDIR/purge-snapshots.sh > $MCSU_LOGDIR/mcsu-purge-snapshots.log 2>&1"
-    alias mcsu-daily-snapshot="$MCSU_SCRIPTDIR/daily-snapshot.sh > $MCSU_LOGDIR/mcsu-daily-snapshot.log 2>&1"
-    alias mcsu-start-on-boot="$MCSU_SCRIPTDIR/start-on-boot.sh > $MCSU_LOGDIR/mcsu-start-on-boot.log 2>&1"
+    export MCSU_INCREMENTAL_BACKUP="$MCSU_SCRIPTDIR/incremental-backup.sh > $MCSU_LOGDIR/MCSU_INCREMENTAL_BACKUP.log 2>&1"
+    export MCSU_PURGE_SNAPSHOTS="$MCSU_SCRIPTDIR/purge-snapshots.sh > $MCSU_LOGDIR/MCSU_PURGE_SNAPSHOTS.log 2>&1"
+    export MCSU_DAILY_SNAPSHOT="$MCSU_SCRIPTDIR/daily-snapshot.sh > $MCSU_LOGDIR/MCSU_DAILY_SNAPSHOT.log 2>&1"
+    export MCSU_START_ON_BOOT="$MCSU_SCRIPTDIR/start-on-boot.sh > $MCSU_LOGDIR/MCSU_START_ON_BOOT.log 2>&1"
 fi
