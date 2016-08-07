@@ -17,7 +17,7 @@ export MCSU_SERVERCMD="cd ${MCSU_SERVERPATH%/*}; java -Xmx1024M -Xms1024M -jar $
 # DON'T STORE OTHER FILES IN THIS DIRECTORY -- THEY MIGHT GET PURGED OTHERWISE!
 export MCSU_TARGETDIR="/path/to/wherever/you/want/to/store/backups"
 
-# change to empty string if you don't want logs
+# change to non-existing directory if you don't want logs
 export MCSU_LOGDIR="/tmp"
 
 # that's it, don't change anything below the following line
@@ -26,14 +26,7 @@ export MCSU_LOGDIR="/tmp"
 
 export MCSU_SOURCEDIR_BASENAME="${MCSU_SOURCEDIR##*/}"
 
-if [ -z "$MCSU_LOGDIR" ]; then  # no logging
-    export MCSU_INCREMENTAL_BACKUP="$MCSU_SCRIPTDIR/incremental-backup.sh > /dev/null 2>&1"
-    export MCSU_PURGE_SNAPSHOTS="$MCSU_SCRIPTDIR/purge-snapshots.sh > /dev/null 2>&1"
-    export MCSU_DAILY_SNAPSHOT="$MCSU_SCRIPTDIR/daily-snapshot.sh > /dev/null 2>&1"
-    export MCSU_START_ON_BOOT="$MCSU_SCRIPTDIR/start-on-boot.sh > /dev/null 2>&1"
-else
-    export MCSU_INCREMENTAL_BACKUP="$MCSU_SCRIPTDIR/incremental-backup.sh > $MCSU_LOGDIR/MCSU_INCREMENTAL_BACKUP.log 2>&1"
-    export MCSU_PURGE_SNAPSHOTS="$MCSU_SCRIPTDIR/purge-snapshots.sh > $MCSU_LOGDIR/MCSU_PURGE_SNAPSHOTS.log 2>&1"
-    export MCSU_DAILY_SNAPSHOT="$MCSU_SCRIPTDIR/daily-snapshot.sh > $MCSU_LOGDIR/MCSU_DAILY_SNAPSHOT.log 2>&1"
-    export MCSU_START_ON_BOOT="$MCSU_SCRIPTDIR/start-on-boot.sh > $MCSU_LOGDIR/MCSU_START_ON_BOOT.log 2>&1"
-fi
+export MCSU_INCREMENTAL_BACKUP="$MCSU_SCRIPTDIR/incremental-backup.sh"
+export MCSU_PURGE_SNAPSHOTS="$MCSU_SCRIPTDIR/purge-snapshots.sh"
+export MCSU_DAILY_SNAPSHOT="$MCSU_SCRIPTDIR/daily-snapshot.sh"
+export MCSU_START_ON_BOOT="$MCSU_SCRIPTDIR/start-on-boot.sh"

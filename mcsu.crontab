@@ -1,0 +1,15 @@
+# perform hourly incremental backup
+# => note that you could change this to occur more or less frequently here
+0 * * * * . $HOME/.mcsurc; $MCSU_INCREMENTAL_BACKUP > $MCSU_LOGDIR/MCSU_INCREMENTAL_BACKUP.log 2>&1
+
+# purge old snapshots at 23:58 every day if not enough free space is available
+# => note that you can comment-out this line if you're afraid of "rm -rf" and
+#    confident that you'll have enough free space for eternity
+58 23 * * * . $HOME/.mcsurc; $MCSU_PURGE_SNAPSHOTS > $MCSU_LOGDIR/MCSU_PURGE_SNAPSHOTS.log 2>&1
+
+# create new daily snapshot at 23:59 every day
+# => note that you could change this to weekly or monthly here
+59 23 * * * . $HOME/.mcsurc; $MCSU_DAILY_SNAPSHOT > $MCSU_LOGDIR/MCSU_DAILY_SNAPSHOT.log 2>&1
+
+# start minecraft server on boot
+@reboot . $HOME/.mcsurc; $MCSU_START_ON_BOOT > $MCSU_LOGDIR/MCSU_START_ON_BOOT.log 2>&1

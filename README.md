@@ -24,6 +24,6 @@ A few utility scripts I wrote that
     cp .mcsurc ~
     ```
 
-3. Finally, set up your crontab: Run `crontab -e` and paste the contents of `crontab.txt` at the end of the buffer. If you don't want to purge old snapshots, comment-out the corresponding line.
+3. Finally, set up your crontab: Run `crontab -e` and paste the contents of `mcsu.crontab` at the end of the buffer. If you don't want to purge old snapshots, comment-out the corresponding line.
 
-After completing these steps, reboot. Once your system is up again, the Minecraft server should be up and running (you can manage it by attaching to the screen session "mcs": `screen -r mcs`) and backups should be performed regularly (check this by looking at the target directory you've configured in step 2, or if it's still empty after a while, inspect the log files).
+After completing these steps, reboot. Once your system is up again, the Minecraft server should be up and running (you can manage it by running `screen -r mcs` to *attach* to the screen session and pressing first <kbd>ctrl</kbd>+<kbd>A</kbd>, then <kbd>D</kbd> to *deattach*) and backups should be performed regularly (check this by looking at the target directory you've configured in step 2, or if it's still empty after a while, inspect the log files).
