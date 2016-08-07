@@ -9,7 +9,7 @@ ls -1rt "$MCSU_TARGETDIR" | grep - | while read -r f; do
     fi
 
     # if we need to make still more space, delete the oldest (lexicographically
-    # first) backup in the target directory
+    # first) snapshot in the target directory
     rm -rf "$MCSU_TARGETDIR/$f"
     echo "deleted $MCSU_TARGETDIR/$f"
 done

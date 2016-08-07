@@ -27,12 +27,12 @@ alias mcsu-start-server="java -Xmx1024M -Xms1024M -jar $MCSU_SERVERPATH nogui"
 
 if [ -z "$MCSU_LOGDIR" ]; then  # no logging
     alias mcsu-incremental-backup="$MCSUSCRIPTDIR/incremental-backup.sh > /dev/null 2>&1"
-    alias mcsu-purge-backups="$MCSUSCRIPTDIR/purge-backups.sh > /dev/null 2>&1"
-    alias mcsu-daily-backup="$MCSUSCRIPTDIR/daily-backup.sh > /dev/null 2>&1"
+    alias mcsu-purge-snapshots="$MCSUSCRIPTDIR/purge-snapshots.sh > /dev/null 2>&1"
+    alias mcsu-daily-snapshot="$MCSUSCRIPTDIR/daily-snapshot.sh > /dev/null 2>&1"
     alias mcsu-start-on-boot="$MCSUSCRIPTDIR/start-on-boot.sh > /dev/null 2>&1"
 else
     alias mcsu-incremental-backup="$MCSUSCRIPTDIR/incremental-backup.sh > $MCSU_LOGDIR/mcsu-hourly-backup.log 2>&1"
-    alias mcsu-purge-backups="$MCSUSCRIPTDIR/purge-backups.sh > $MCSU_LOGDIR/mcsu-purge-backups.log 2>&1"
-    alias mcsu-daily-backup="$MCSUSCRIPTDIR/daily-backup.sh > $MCSU_LOGDIR/mcsu-daily-backup.log 2>&1"
+    alias mcsu-purge-snapshots="$MCSUSCRIPTDIR/purge-snapshots.sh > $MCSU_LOGDIR/mcsu-purge-snapshots.log 2>&1"
+    alias mcsu-daily-snapshot="$MCSUSCRIPTDIR/daily-snapshot.sh > $MCSU_LOGDIR/mcsu-daily-snapshot.log 2>&1"
     alias mcsu-start-on-boot="$MCSUSCRIPTDIR/start-on-boot.sh > $MCSU_LOGDIR/mcsu-start-on-boot.log 2>&1"
 fi
