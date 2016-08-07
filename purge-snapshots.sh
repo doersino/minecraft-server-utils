@@ -1,6 +1,6 @@
 #!/bin/bash
 
-local REQUIRED_FREESPACE="$(du -s "$MCSU_SOURCEDIR" | cut -f1)"
+REQUIRED_FREESPACE="$(du -s "$MCSU_SOURCEDIR" | cut -f1)"
 
 ls -1rt "$MCSU_TARGETDIR" | grep - | while read -r f; do
     # break if enough free space is available
