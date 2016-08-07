@@ -2,7 +2,7 @@
 
 A few utility bash scripts I wrote that
 
-1. start a [vanilla Minecraft server](https://minecraft.net/en/download/server) on system boot,
+1. start an already-installed [vanilla Minecraft server](https://minecraft.net/en/download/server) on system boot,
 2. keep an up-to-date incremental backup of the world and server files,
 3. as well as daily snapshots for the history books,
 4. and optionally purge old snapshots whenever disk space runs low.
