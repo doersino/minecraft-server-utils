@@ -7,7 +7,7 @@ A few utility bash scripts I wrote that
 3. as well as daily snapshots for the history books,
 4. and optionally purge old snapshots whenever disk space runs low.
 
-*In principle, these scripts should work on any *nix system (e.g. macOS or any Linux distribution). However, I have only tested them on a ridiculously old (but still almost fast enough to host a Minecraft server for two people) laptop running Ubuntu 14.04.4 LTS.*
+*In principle, these scripts should work on any \*nix system (e.g. macOS or any Linux distribution). However, I have only tested them on a ridiculously old (but still almost fast enough to host a Minecraft server for two people) laptop running Ubuntu 14.04.4 LTS.*
 
 ## Setup
 
